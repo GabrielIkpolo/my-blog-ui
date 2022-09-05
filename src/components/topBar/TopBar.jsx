@@ -4,8 +4,13 @@ import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { Context } from '../../context/Context';
 
+
+const address = process.env.REACT_APP_BASE_URL;
+
 export default function TopBar() {
     const { user, dispatch } = useContext(Context);
+
+    const PF = `${address.slice(0, address.length -3)}images/`;
 
     const handleLogout = () => {
         dispatch({ type: "LOGOUT" });
@@ -31,7 +36,7 @@ export default function TopBar() {
             <div className="topRight">
                 {user ?
                     <Link to="/settings">
-                        <img className="topImage" src={user.profilePicture} alt="Profile" />
+                        <img className="topImage" src={PF + user.profilePicture} alt="Profile" />
                     </Link>
                     :
                     <ul className='topList'>
